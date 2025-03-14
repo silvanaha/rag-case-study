@@ -29,9 +29,6 @@ def create_index_st(path_to_data):
     (modell, retrievely, documenty) = initialize_rag_pipeline(documents_path=path_to_data, retriever_selection="faiss")
     return modell, retrievely, texts
 
-@st.cache.resource
-def get_response(user_question, retriever, model):
-    return respond_to_query(user_question, retriever, model)
 
 st.sidebar.markdown("_Lade Datenbank von..._")
 st.sidebar.write(data_path)
@@ -47,7 +44,7 @@ with st.form("query_form"):
     submitted = st.form_submit_button("Los gehts")
 if submitted:
     st.markdown("_Vielen Dank für die Frage! Die Antworten sind unterwegs_ 🧬 ")
-    response, (prompt, filtered, filtered_scores) = get_response(user_question, retriever, model)
+    response, (prompt, filtered, filtered_scores) = respond_to_query(user_question, retriever, model)
     st.session_state['tricks'] = response.content
     st.write(response.content)
 
@@ -69,7 +66,7 @@ if submitted:
 
 with st.form("eval_form"):
     reference2 = st.text_area(
-        "Please write a reference answer here", st.session_state.tricks
+        "Please write a reference answer here", 
     )
     submitted2 = st.form_submit_button("Evaluate")
 if submitted2:
