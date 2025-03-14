@@ -18,12 +18,14 @@ def init_model() -> BaseChatModel:
     return init_chat_model("open-mistral-7b", model_provider="mistralai")
 
 def create_prompt_template():
-    template = "Based on the following documents: {context}, answer the question: {question}"
+    template = """Based on the following documents: {context}, answer the question in German by summarizing the relevant documents and referring to the source document (marked with the term "Quelle"): {question}. 
+    If the answer is not contained in the documents, politely refuse to answer the question by referring to your area of expertise: Aphasia, Heart Attack and Neglect Syndrome"""
     prompt_template = PromptTemplate(template=template, input_variables=["context", "question"])
     return prompt_template
 
 def create_context(results):
-    context = " ".join([x.page_content for x in results]) ## TODO add source
+    context = "\n".join([f"{x.page_content} (Quelle: {x.metadata["source"]})" for x in results])
+    print(context)
     return context
 
 def respond_to_query(user_question:str, retriever: BaseRetriever, model: BaseChatModel):

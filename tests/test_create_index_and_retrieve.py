@@ -1,4 +1,4 @@
-from unittest import TestCase, skip
+from unittest import TestCase
 from assertpy import assert_that
 
 from src.rag.create_index_and_retrieve import get_bm25_retriever_from_text, get_ensemble_retriever_from_texts, \

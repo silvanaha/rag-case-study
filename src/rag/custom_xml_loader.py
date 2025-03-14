@@ -64,6 +64,6 @@ class CustomXMLLoader(BaseLoader):
         except Exception as e:
             raise RuntimeError(f"Error loading {self.file_path}") from e
 
-        metadata = {"source": str(self.file_path)} # TODO add additional metadata
+        metadata = {"source": str(self.file_path.split("/")[-1])} # additional metadata?
         for text in text_documents:
             yield Document(page_content=text, metadata=metadata)
