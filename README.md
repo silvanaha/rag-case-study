@@ -2,7 +2,7 @@
 
 ## What is this
 * this is a basic POC for a rag systemdemo_2
-![screenshot](demo_2.png)
+![screenshot](demo_1.png)
 ## How...to set up the python environment
 * create virtualenv ```virtualenv -p python3.12 venv_name ```
 * activate virtualenv ```source venv_name/bin/activate```
@@ -27,7 +27,7 @@
 * Note that the demo contains two apps 
   * the startup screen is the user demo aka _medical rag demo_. 
   * the second tab on the side menu is the _developer demo_ that shows intermediate results and validation scores
-
+  ![screenshot](demo_dev.png)
 
 ## How...to query the rag system without the demo
 * See tests in test_create_rag_pipeline.py

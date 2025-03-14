@@ -2,6 +2,10 @@ import streamlit as st
 
 from src.rag.create_rag_pipeline import init_model, respond_to_query, initialize_rag_pipeline
 
+st.set_page_config(
+    page_title="MEDICAL RAG",
+    page_icon=":health_worker:",
+)
 st.title('MEDICAL RAG DEMO :health_worker:')
 st.markdown("Das Medical Rag System informiert Fachleute und Laien über Themen aus der Fach- und Allgemeinmedizin. "
             "Dabei dient es als Sparringspartner bei der medizinischen Diagnostik und unterstützt im Dialog bei der Aus- und Weiterbildung. ")
@@ -31,5 +35,5 @@ with st.form("query_form"):
     submitted = st.form_submit_button("Los gehts")
     if submitted:
         st.markdown("_Vielen Dank für die Frage! Die Antworten sind unterwegs_ 🧬 ")
-        response = respond_to_query(user_question, retriever, model)
+        response, (prompt, filtered, filtered_scores) = respond_to_query(user_question, retriever, model)
         st.write(response.content)
