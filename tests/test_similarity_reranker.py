@@ -45,7 +45,7 @@ Die Pragmatik ist ein Teilgebiet der Linguistik. Einführung""".split("\n")
             Document("Die Pragmatik ist ein Teilgebiet der Linguistik. Einführung"),
             Document("Konversationelle Implikaturen sind ein wichtiges Thema. Methoden der Pragmatik, Relevante Begriffe")
         ]
-        filtered = filter_results_by_similarity_cutoff(query, results, embedding_model="mistral", cutoff=0.84)
+        filtered, _ = filter_results_by_similarity_cutoff(query, results, embedding_model="mistral", cutoff=0.84)
         assert_that(len(filtered)).is_equal_to(3)
 
     def test_filter_results_sentence_transformer(self):
@@ -56,6 +56,6 @@ Die Pragmatik ist ein Teilgebiet der Linguistik. Einführung""".split("\n")
             Document("Die Pragmatik ist ein Teilgebiet der Linguistik. Einführung"),
             Document("Konversationelle Implikaturen sind ein wichtiges Thema. Methoden der Pragmatik, Relevante Begriffe")
         ]
-        filtered = filter_results_by_similarity_cutoff(query, results, embedding_model="sentence-transformer", cutoff=.84)
+        filtered, _ = filter_results_by_similarity_cutoff(query, results, embedding_model="sentence-transformer", cutoff=.84)
         assert_that(len(filtered)).is_equal_to(2)
 

@@ -25,24 +25,19 @@ def create_prompt_template():
 
 def create_context(results):
     context = "\n".join([f"{x.page_content} (Quelle: {x.metadata["source"]})" for x in results])
-    print(context)
     return context
 
 def respond_to_query(user_question:str, retriever: BaseRetriever, model: BaseChatModel):
 
     results = retrieve_results(user_question, retriever)
-    for document in results:
-        print(document.page_content)
     print(f"before filtering {len(results)}")
-    filtered = filter_results_by_similarity_cutoff(user_question, results, 0.8)
+    filtered, filtered_scores = filter_results_by_similarity_cutoff(user_question, results, 0.8)
     print(f"after filtering {len(filtered)}")
-    for document in filtered:
-        print(document.page_content)
     context = create_context(filtered)
     prompt_template = create_prompt_template()
     prompt = prompt_template.invoke({"context": {context}, "question": {user_question}})
     response = model.invoke(prompt)
-    return response
+    return response, (prompt, filtered, filtered_scores)
 
 def load_all_xml_documents( path_to_files):
 

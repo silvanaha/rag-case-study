@@ -7,8 +7,8 @@ from transformers import AutoModel, AutoTokenizer
 from langchain_community.retrievers import BM25Retriever
 from langchain.retrievers import EnsembleRetriever
 from langchain_community.vectorstores import FAISS
-from nltk.tokenize import word_tokenize
 import spacy
+from nltk.tokenize import word_tokenize
 import nltk
 #nltk.download('punkt_tab')
 

@@ -17,7 +17,7 @@ class CreateRagPipelineTestCase(TestCase):
     def test_do_rag(self):
         user_question = "Ist Deixis ein Konzept in der Pragmatik?"
 
-        response = respond_to_query(user_question, self.retriever, self.model)
+        response, _ = respond_to_query(user_question, self.retriever, self.model)
         print(f"response to {user_question}:/n {response}")
         assert_that(response).is_not_none()
 
@@ -25,6 +25,6 @@ class CreateRagPipelineTestCase(TestCase):
     def test_do_rag_oov(self):
         user_question = "Welche Rezepte kennst du für Kartoffeln?"
 
-        response = respond_to_query(user_question, self.retriever, self.model)
+        response, _ = respond_to_query(user_question, self.retriever, self.model)
         print(f"response to {user_question}:/n {response}")
         assert_that(response).is_not_none()

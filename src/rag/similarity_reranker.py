@@ -28,7 +28,6 @@ def rerank_results_for_query(query: str, results: [str], embedding_model: str):
     scored_dict = dict(zip(scores, results))
     reordered = []
     for k in sorted(scored_dict, reverse=True):
-        print(k, scored_dict[k])
         reordered.append(scored_dict[k])
     return reordered
 
@@ -38,7 +37,8 @@ def filter_results_by_similarity_cutoff(query: str, results : [Document], embedd
     reranked = rerank_results_for_query(query, texts, embedding_model)
     scored_dict = dict(zip(scores, results))
     filtered = [scored_dict[score] for score in scored_dict if score > cutoff]
-    return filtered
+    filtered_scores = [score for score in scored_dict if score > cutoff]
+    return filtered, filtered_scores
 
 
 def get_similarity_scores_for_query(query: str, results: [str], embedding_model: str) -> [str]:
