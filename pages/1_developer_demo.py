@@ -62,11 +62,10 @@ if submitted:
     st.markdown(f"rouge2 {rouge_score['rouge2'].precision:.4f} {rouge_score['rouge2'].recall:.4f} {rouge_score['rouge2'].fmeasure:.4f}")
     st.markdown(f"rougeL {rouge_score['rougeL'].precision:.4f} {rouge_score['rougeL'].recall:.4f} {rouge_score['rougeL'].fmeasure:.4f}")
 
-    st.subheader("LLM Evaluation Score")
-
+st.subheader("LLM Evaluation Score")
 with st.form("eval_form"):
     reference2 = st.text_area(
-        "Please write a reference answer here", 
+        "Please write a reference answer here",
     )
     submitted2 = st.form_submit_button("Evaluate")
 if submitted2:
