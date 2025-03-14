@@ -17,16 +17,16 @@
   * you also need to accept the terms for using mistral at huggingface [link](https://huggingface.co/mistralai/Mixtral-8x7B-v0.1)
   * add the API key to the environment variables
     * for instance by adding ```HF_TOKEN=<your-api-key>```to your `.env` file
-    * and running ```export $(cat .env | xargs)``` in your working directory
+    * and running ```export $(cat .env | xargs)``` in your working directorydemo
 ## How...to run the interactive demo ui
 * set up API keys and environment as described above
 * put the .xml documents from documents.zip into a folder and copy the absolute `path_to_data` 
 * start the interactive demo with: ```streamlit run medical_rag_demo.py```
-* go to your browser and enter the `path_to_data` in order to create the retrieval index
+* go to your browser and enter the `path_to_data` to the sidebar in order to create the retrieval index
 * query the demo (and be aware of rate limits)
 * Note that the demo contains two apps 
   * the startup screen is the user demo aka _medical rag demo_. 
-  * the second tab on the side menu is the _developer demo_ that shows intermediate results and validation scores
+  * the second tab on the sidebar is the _developer demo_ that shows intermediate results and validation scores
   ![screenshot](demo_dev.png)
 
 ## How...to query the rag system without the demo
