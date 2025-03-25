@@ -34,7 +34,7 @@ def rerank_results_for_query(query: str, results: [str], embedding_model: str):
 def filter_results_by_similarity_cutoff(query: str, results : [Document], embedding_model: str = "mistral-ai", cutoff: float = 0.8) -> [Document]:
     texts = [x.page_content for x in results]
     scores = get_similarity_scores_for_query(query, texts, embedding_model)
-    reranked = rerank_results_for_query(query, texts, embedding_model)
+    #reranked = rerank_results_for_query(query, texts, embedding_model)
     scored_dict = dict(zip(scores, results))
     filtered = [scored_dict[score] for score in scored_dict if score > cutoff]
     filtered_scores = [score for score in scored_dict if score > cutoff]

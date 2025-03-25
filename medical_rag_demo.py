@@ -1,6 +1,6 @@
 import streamlit as st
 
-from src.rag.create_rag_pipeline import init_model, respond_to_query, initialize_rag_pipeline
+from src.rag.create_rag_pipeline import respond_to_query, initialize_rag_pipeline
 
 st.set_page_config(
     page_title="MEDICAL RAG",
